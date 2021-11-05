@@ -85,7 +85,7 @@ final class NFT_Generate
      * @access  private
      * @type    integer
      */
-    private bool $clear_folder = true;
+    private bool $clear_folder = false;
 
     public function __construct()
     {
