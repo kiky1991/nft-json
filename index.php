@@ -89,8 +89,6 @@ final class NFT_Generate
 
     public function __construct()
     {
-        // $this->jpg_to_png();die;
-        // $this->scan_images('uploads');
         // generate
         $result = $this->generate();
 
