@@ -75,6 +75,18 @@ final class NFT_Generate
      */
     private string $compiler = "Bot NFT json Generator";
 
+    /**
+     * NFT_generate::$clear_folder
+     *
+     * Clear uploads folder after generate.
+     * Set true / false
+     * Default is false
+     *
+     * @access  private
+     * @type    integer
+     */
+    private bool $clear_folder = true;
+
     public function __construct()
     {
         // $this->jpg_to_png();die;
@@ -83,8 +95,12 @@ final class NFT_Generate
         $result = $this->generate();
 
         // get result
-        if ($result) print("\e[1;32m[Success] \e[0m File has been generate on folder " . $result . "\xA");
-        else print("\e[0;31m[Failed] \e[0m Failed generate, check variable type then try again or call developer." . "\xA");
+        if ($result) {
+            print("\e[1;32m[Success] \e[0m File has been generate on folder " . $result . "\xA");
+            $this->clear_folder();
+        } else { 
+            print("\e[0;31m[Failed] \e[0m Failed generate, check variable type then try again or call developer." . "\xA");
+        }
     }
 
     protected function generate() : bool
@@ -185,6 +201,14 @@ final class NFT_Generate
     private function is_dir_empty($directory) {
         if (!is_readable($directory)) return null; 
         return (count(scandir($directory)) == 2);
+    }
+
+    private function clear_folder()
+    {
+        if (!$this->clear_folder) return false;
+
+        array_map('unlink', array_filter(
+            (array) array_merge(glob("./uploads/*"))));
     }
 }
 
