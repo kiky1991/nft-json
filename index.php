@@ -29,7 +29,7 @@ final class NFT_Generate
      * @access  private
      * @type    integer
      */
-    private string $prefix = "yocorp-";
+    private string $prefix = "tiger-woods-";
 
     /**
      * NFT_generate::$suffix
@@ -40,7 +40,7 @@ final class NFT_Generate
      * @access  private
      * @type    integer
      */
-    private string $suffix = "";
+    private string $suffix = "-720";
 
     /**
      * NFT_generate::$compiler
@@ -51,7 +51,7 @@ final class NFT_Generate
      * @access  private
      * @type    integer
      */
-    private string $description = "This is description, descript what you want";
+    private string $description = "The first special NFT painting of legendaris professionally known as Tiger Woods, is an American professional golfer";
     
     /**
      * NFT_generate::$artist
@@ -62,7 +62,18 @@ final class NFT_Generate
      * @access  private
      * @type    integer
      */
-    private string $artist = "Vanessa Angel";
+    private string $artist = "Tiger Woods";
+
+    /**
+     * NFT_generate::$creator
+     *
+     * creator name.
+     * Set your default creator name from here
+     *
+     * @access  private
+     * @type    integer
+     */
+    private string $creator = "Yocorp";
     
     /**
      * NFT_generate::$compiler
@@ -73,7 +84,7 @@ final class NFT_Generate
      * @access  private
      * @type    integer
      */
-    private string $compiler = "Bot NFT json Generator";
+    private string $compiler = "Polygon Compiler";
 
     /**
      * NFT_generate::$clear_folder
@@ -110,7 +121,7 @@ final class NFT_Generate
 
         if ($handle = opendir('./uploads')) {
             while (false !== ($entry = readdir($handle))) $files[] = $entry;
-            $images = preg_grep('/\.(jpg|jpeg)(?:[\?\#].*)?$/i', $files);
+            $images = preg_grep('/\.(jpg|jpeg|png)(?:[\?\#].*)?$/i', $files);
         
             // generate file
             $index = 1;
@@ -184,7 +195,8 @@ final class NFT_Generate
             "artist"        => $data['artist'],
             "date"          => strtotime(date('Y-m-d H:i:s')),
             "attributes"    => array(),
-            "compiler"      => $this->compiler
+            "compiler"      => $this->compiler,
+            "creator"       => $this->creator,
         );
     } 
 
